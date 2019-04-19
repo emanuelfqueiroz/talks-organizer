@@ -1,0 +1,78 @@
+[
+  {
+    "Title": "Writing Fast Tests Against Enterprise Rails 60min",
+    "Duration": 60
+  },
+  {
+    "Title": "Overdoing it in Python 45min",
+    "Duration": 45
+  },
+  {
+    "Title": "Lua for the Masses 30min",
+    "Duration": 30
+  },
+  {
+    "Title": "Ruby Errors from Mismatched Gem Versions 45min",
+    "Duration": 45
+  },
+  {
+    "Title": "Common Ruby Errors 45min",
+    "Duration": 45
+  },
+  {
+    "Title": "Rails for Python Developers lightning",
+    "Duration": 5
+  },
+  {
+    "Title": "Communicating Over Distance 60min",
+    "Duration": 60
+  },
+  {
+    "Title": "Accounting-Driven Development 45min",
+    "Duration": 45
+  },
+  {
+    "Title": "Woah 30min",
+    "Duration": 30
+  },
+  {
+    "Title": "Sit Down and Write 30min",
+    "Duration": 30
+  },
+  {
+    "Title": "Pair Programming vs Noise 45min",
+    "Duration": 45
+  },
+  {
+    "Title": "Rails Magic 60min",
+    "Duration": 60
+  },
+  {
+    "Title": "Ruby on Rails: Why We Should Move On 60min",
+    "Duration": 60
+  },
+  {
+    "Title": "Clojure Ate Scala (on my project) 45min",
+    "Duration": 45
+  },
+  {
+    "Title": "Programming in the Boondocks of Seattle 30min",
+    "Duration": 30
+  },
+  {
+    "Title": "Ruby vs. Clojure for Back-End Development 30min",
+    "Duration": 30
+  },
+  {
+    "Title": "Ruby on Rails Legacy App Maintenance 60min",
+    "Duration": 60
+  },
+  {
+    "Title": "A World Without HackerNews 30min",
+    "Duration": 30
+  },
+  {
+    "Title": "User Interface CSS in Rails Apps 30min",
+    "Duration": 30
+  }
+]
