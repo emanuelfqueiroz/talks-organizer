@@ -8,7 +8,7 @@ namespace TalkProject
         static void Main(string[] args)
         {
             Console.WriteLine("Hello World!");
-            new TalkFactory().GetTalks().ForEach(x=>Console.WriteLine($" {x.Title} + {x.Duration}min \n"));
+            new TalkFactory().GetSessionCollection();
             Console.ReadLine();
         }
     }
