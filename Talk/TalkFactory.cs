@@ -27,7 +27,7 @@ namespace TalkProject
         public SessionCollection GetSessionCollection()
         {
             var talks = GetTalks();
-            var tries = Math.Pow(talks.Count, 3);
+            var tries = Math.Pow(talks.Count, 4);
             tries = tries > MAX_TRIES ? MAX_TRIES : tries;
 
             var i = 0;
@@ -39,6 +39,10 @@ namespace TalkProject
                 SessionCollection current = CreateSessionCollection(talks);
                 if (current.IsValid)
                 {
+                    if(current.NeedToBalance)
+                    {
+                        current = Balance(current)
+                    }
                     if (best is null)
                     {
                         best = current;
@@ -49,7 +53,7 @@ namespace TalkProject
                         {
                             best = current;
                         }
-                        else if (current.LeftMinutes == best.LeftMinutes //Escolha as melhores caracteristicas
+                        else if (current.LeftMinutes == best.LeftMinutes //Choose the best conditions
                              && current.Sessions.Count(x => x.IsFull) > best.Sessions.Count(x => x.IsFull))
                         {
                             best = current;
@@ -60,16 +64,23 @@ namespace TalkProject
             }
             return best;
         }
+        /**
+         * Balancear
+         */
+        private SessionCollection Balance(SessionCollection current)
+        {
+            return current;
+        }
 
         private SessionCollection CreateSessionCollection(List<Talk> talks)
         {
             var dayFactory = new Factories.Day(StartDay);
             var current = dayFactory.NextSession();
 
-            for (var i=0;  i < talks.Count - 1; i++)
+            for (var i=0;  i <= talks.Count - 1; i++)
             {
                 var talk = talks[i];
-                                
+           
                 if(current.LeftMinutes >= talk.Duration)
                 {
                     current.AddTalk(talk);

@@ -18,7 +18,11 @@ namespace TalkProject.Model
 
         public bool IsAnyLow
         {
-            get { return Sessions.Any(x => x.IsLow); }
+            get { return Sessions.Take(Sessions.Count-1).Any(x => x.IsLow); } //When last Session is lower than ideal
+        }
+        public bool NeedToBalance
+        {
+            get { return IsValid && Sessions.Last().IsLow; }
         }
         public bool IsAnyOver
         {

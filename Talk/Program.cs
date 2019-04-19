@@ -23,7 +23,7 @@ namespace TalkProject
                 return;
             }
             Console.WriteLine("-------------------------\n");
-            Console.WriteLine($"Left Minutes: {best.LeftMinutes}\n");
+            Console.WriteLine($"Left Minutes: {best.LeftMinutes}\n NeedToBalance {best.NeedToBalance}");
             foreach (var item in best.Sessions)
             {
                 Console.WriteLine($"    Start {item.Start} ----Left: {item.LeftMinutes}-\n");

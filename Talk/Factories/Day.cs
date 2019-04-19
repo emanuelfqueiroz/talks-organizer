@@ -17,7 +17,7 @@ namespace TalkProject.Factories
             Start = start;
             CurrentDay = start;
             Intervals.Add(new Interval(160, 180, 9));
-            Intervals.Add(new Interval(180, 240, 14));
+            Intervals.Add(new Interval(180, 240, 13));
             indexInterval = 0;
         }
         private void NextStep()
