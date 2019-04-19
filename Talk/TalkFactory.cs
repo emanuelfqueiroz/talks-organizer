@@ -9,11 +9,21 @@ namespace TalkProject
 {
     class TalkFactory
     {
-       
+        public DateTime StartDay { get; set; }
+        public int MaxTries { get; set; }
+        public string File { get; set; }
+
+        public TalkFactory(DateTime startDay, string file, int maxTries)
+        {
+            StartDay = startDay;
+            MaxTries = maxTries;
+            File = file;
+        }
+
         public List<Talk> GetTalks()
         {
-            var JSON = System.IO.File.ReadAllText("talks.json");
-            return new Utils.JSON().DeserializeToList<Talk>(JSON);
+            var json = System.IO.File.ReadAllText(File);
+            return new Utils.JSON().DeserializeToList<Talk>(json);
         }
 
         public SessionCollection GetSessionCollection()
@@ -21,60 +31,38 @@ namespace TalkProject
             var talks = GetTalks();
             var i = 0;
             SessionCollection best = null;
-            while (i < 10000000)
+            while (i < MaxTries)
             {
                 i++;
                 talks = Shuffle(talks);
-                SessionCollection c = CreateSessionCollection(talks);
-                if (c.IsValid)
+                SessionCollection current = CreateSessionCollection(talks);
+                if (current.IsValid)
                 {
                     if (best is null)
                     {
-
-                        best = c;
-
+                        best = current;
                     }
-                    if (c.LeftMinutes < best.LeftMinutes)
+                    else
                     {
-
-                        best = c;
+                        if (current.LeftMinutes < best.LeftMinutes)
+                        {
+                            best = current;
+                        }
+                        else if (current.LeftMinutes == best.LeftMinutes //Escolha as melhores caracteristicas
+                             && current.Sessions.Count(x => x.IsFull) > best.Sessions.Count(x => x.IsFull))
+                        {
+                            best = current;
+                        }
                     }
-                }
-                else
-                {
-                    
                 }
                
             }
-            PrintStatus(best);
             return best;
-            
-        }
-
-        private static void PrintStatus(SessionCollection best)
-        {
-            if(best is null)
-            {
-                return;
-            }
-            Console.WriteLine("-------------------------\n");
-            Console.WriteLine($"Left Minutes: {best.LeftMinutes}\n");
-            foreach (var item in best.Sessions)
-            {
-                Console.WriteLine($"    Start {item.Start} ----Left: {item.LeftMinutes}-\n");
-                foreach (var talk in item.Talks)
-                {
-                    Console.WriteLine($"      Talks {talk.Title} -----\n");
-                }
-            }
         }
 
         private SessionCollection CreateSessionCollection(List<Talk> talks)
         {
-          
-            var start = new DateTime(2019, 06, 1);
-            var dayFactory = new Factories.Day(start);
-
+            var dayFactory = new Factories.Day(StartDay);
             var current = dayFactory.NextSession();
 
             for (var i=0;  i < talks.Count - 1; i++)
@@ -92,9 +80,7 @@ namespace TalkProject
                     current.AddTalk(talk);
                 }
             }
-
             return new SessionCollection(dayFactory.Sessions);
-
         }
 
         private List<Talk> Shuffle(List<Talk> talks)
