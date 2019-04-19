@@ -13,27 +13,12 @@ namespace TalkProject.Model
         public List<Talk> Talks { get; private set; } = new List<Talk>();
 
         public int Duration { get; private set; }
-       
-        public bool IsFull
-        {
-            get { return Duration == MaxMinutes; }
-        }
-        public bool IsLow
-        {
-            get { return Duration < MinMinutes; }
-        }
-        public bool IsOver
-        {
-            get { return Duration > MaxMinutes; }
-        }
-        public bool IsValid
-        {
-            get { return !IsLow && !IsOver; }
-        }
-        public int LeftMinutes
-        {
-            get { return MaxMinutes - Duration;  }
-        }
+
+        public bool IsFull => Duration == MaxMinutes;
+        public bool IsLow => Duration < MinMinutes;
+        public bool IsOver => Duration > MaxMinutes;
+        public bool IsValid => !IsLow && !IsOver;
+        public int LeftMinutes => MaxMinutes - Duration;
 
 
         public Session( int minMinutes, int maxMinutes, DateTime start)
@@ -43,10 +28,7 @@ namespace TalkProject.Model
             Start = start;
         }
 
-        private void LoadProperties()
-        {
-           Duration = Talks.Sum(x => x.Duration);
-        }
+        private void LoadProperties() => Duration = Talks.Sum(x => x.Duration);
         public void AddTalk(Talk t)
         {
             Talks.Add(t);

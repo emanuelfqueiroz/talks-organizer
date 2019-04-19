@@ -41,7 +41,7 @@ namespace TalkProject
                 {
                     if(current.NeedToBalance)
                     {
-                        current = Balance(current)
+                        current = Balance(current);
                     }
                     if (best is null)
                     {
@@ -95,10 +95,7 @@ namespace TalkProject
             return new SessionCollection(dayFactory.Sessions);
         }
 
-        private List<Talk> Shuffle(List<Talk> talks)
-        {
-            return talks.OrderBy(a => Guid.NewGuid()).ToList();
-        }
+        private List<Talk> Shuffle(List<Talk> talks) => talks.OrderBy(a => Guid.NewGuid()).ToList();
 
     }
 }
