@@ -16,21 +16,17 @@ namespace TalkProject.Model
 
         public int Duration { get { return Sessions.Sum(p => p.Duration); } }
 
-        public bool IsFull
-        {
-            get { return Sessions.Any(x => x.IsFull); }
-        }
-        public bool IsLow
+        public bool IsAnyLow
         {
             get { return Sessions.Any(x => x.IsLow); }
         }
-        public bool IsOver
+        public bool IsAnyOver
         {
             get { return Sessions.Any(x => x.IsOver); }
         }
         public bool IsValid
         {
-            get { return !IsLow && !IsOver; }
+            get { return !IsAnyLow && !IsAnyOver; }
         }
         public int LeftMinutes
         {

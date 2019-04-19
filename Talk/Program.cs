@@ -9,7 +9,7 @@ namespace TalkProject
         static void Main(string[] args)
         {
             var startDay = new DateTime(2019, 06, 1);
-            var factory = new TalkFactory(startDay, "talks.json", 10000);
+            var factory = new TalkFactory(startDay, "talks.json");
             var collection = factory.GetSessionCollection();
             PrintCollection(collection);
             Console.ReadLine();

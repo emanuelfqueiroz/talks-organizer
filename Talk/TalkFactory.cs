@@ -10,13 +10,11 @@ namespace TalkProject
     class TalkFactory
     {
         public DateTime StartDay { get; set; }
-        public int MaxTries { get; set; }
         public string File { get; set; }
-
-        public TalkFactory(DateTime startDay, string file, int maxTries)
+        const int MAX_TRIES = 100000000;
+        public TalkFactory(DateTime startDay, string file)
         {
             StartDay = startDay;
-            MaxTries = maxTries;
             File = file;
         }
 
@@ -29,9 +27,12 @@ namespace TalkProject
         public SessionCollection GetSessionCollection()
         {
             var talks = GetTalks();
+            var tries = Math.Pow(talks.Count, 3);
+            tries = tries > MAX_TRIES ? MAX_TRIES : tries;
+
             var i = 0;
             SessionCollection best = null;
-            while (i < MaxTries)
+            while (i < tries)
             {
                 i++;
                 talks = Shuffle(talks);
