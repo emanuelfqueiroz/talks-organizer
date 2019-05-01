@@ -74,7 +74,7 @@ namespace TalkProject
 
         private SessionCollection CreateSessionCollection(List<Talk> talks)
         {
-            var dayFactory = new Factories.Day(StartDay);
+            var dayFactory = new Factories.DayFactory(StartDay);
             var current = dayFactory.NextSession();
 
             for (var i=0;  i <= talks.Count - 1; i++)

@@ -5,14 +5,14 @@ using TalkProject.Model;
 
 namespace TalkProject.Factories
 {
-    internal class Day
+    internal class DayFactory
     {
         public DateTime Start { get; private set; }
         private DateTime CurrentDay { get; set; }
         public List<Interval> Intervals { get; private set; } = new List<Interval>();
         private int indexInterval = 0;
         public List<Session> Sessions { get; private set; } = new List<Session>();
-        public Day(DateTime start)
+        public DayFactory(DateTime start)
         {
             Start = start;
             CurrentDay = start;
